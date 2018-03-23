@@ -22,9 +22,3 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias lh="ls -hal"
 
 alias psl="ps -ef|grep -v 'grep --color=auto'|grep "
-
-
-# import if file exists
-if [ -f $DIR/local_aliases.sh ]; then
-    source $DIR/local_aliases.sh
-fi

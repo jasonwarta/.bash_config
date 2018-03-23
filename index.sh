@@ -6,12 +6,12 @@ source $DIR/bashrc.sh
 source $DIR/bash_aliases.sh
 source $DIR/bash_functions.sh
 
-# import local path if file exists
-if [ -f ./path.sh ]; then
-    source $DIR/path.sh
-fi
+# the following section relys on a folder of local scripts and settings contained
+# in a folder in a location specificied by the LOCAL_SETTINGS variable
+LOCAL_SETTINGS="$DIR/local_settings"
 
-# import local sources
-if [ -f ./local_sources.sh ]; then
-    source $DIR/local_sources.sh
-fi
+for i in $LOCAL_SETTINGS/*; do
+	if [ -r $i ]; then
+		. $i
+	fi
+done
