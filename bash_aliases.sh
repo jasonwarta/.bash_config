@@ -22,3 +22,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias lh="ls -hal"
 
 alias psl="ps -ef|grep -v 'grep --color=auto'|grep "
+
+# disk usage aliased to show all files in human readable format
+alias duh='du -ah'
+
+alias sizeof="stat --format="%s""

@@ -29,3 +29,15 @@ function gitlsd() {
 		fi
 	done <<< $FILES
 }
+
+confirm () {
+    read -r -p "${1:-Are you sure? [y/N]} " response </dev/tty
+    case $response in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}

@@ -20,12 +20,15 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# write history to ~/.bash_history immediately after each command is entered
+PROMPT_COMMAND='history -a'
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -62,16 +65,68 @@ fi
 
 
 # set up git prompt stuff
-source $DIR/git-completion.sh
-source $DIR/git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
+source $DIR/better-git-prompt.sh
+export PS1="\[\033[36m\]\w \[\033[31m\]\$(parse_git_branch)\[\033[32m\]$ "
 
-if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
-else
-    PS1='\w$(__git_ps1 " (%s)")\$ '
-fi
-unset color_prompt force_color_prompt
+# # Other git prompt. worse imo
+# source $DIR/git-completion.sh
+# source $DIR/git-prompt.sh
+# export GIT_PS1_SHOWDIRTYSTATE=1
+
+# if [ "$color_prompt" = yes ]; then
+#     PS1='\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
+# else
+#     PS1='\w$(__git_ps1 " (%s)")\$ '
+# fi
+# unset color_prompt force_color_prompt
+
+# # get current branch in git repo
+# function parse_git_branch() {
+#     BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+#     if [ ! "${BRANCH}" == "" ]
+#     then
+#         STAT=`parse_git_dirty`
+#         echo "{${BRANCH}${STAT}}"
+#     else
+#         echo ""
+#     fi
+# }
+
+# # get current status of git repo
+# function parse_git_dirty {
+#     status=`git status 2>&1 | tee`
+#     dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+#     untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+#     ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+#     newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+#     renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+#     deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+#     bits=''
+#     if [ "${renamed}" == "0" ]; then
+#         bits=">${bits}"
+#     fi
+#     if [ "${ahead}" == "0" ]; then
+#         bits="*${bits}"
+#     fi
+#     if [ "${newfile}" == "0" ]; then
+#         bits="+${bits}"
+#     fi
+#     if [ "${untracked}" == "0" ]; then
+#         bits="?${bits}"
+#     fi
+#     if [ "${deleted}" == "0" ]; then
+#         bits="x${bits}"
+#     fi
+#     if [ "${dirty}" == "0" ]; then
+#         bits="!${bits}"
+#     fi
+#     if [ ! "${bits}" == "" ]; then
+#         echo " ${bits}"
+#     else
+#         echo ""
+#     fi
+# }
+
 
 
 # If this is an xterm set the title to user@host:dir
