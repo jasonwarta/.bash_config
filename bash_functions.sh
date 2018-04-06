@@ -41,3 +41,7 @@ confirm () {
             ;;
     esac
 }
+
+findin () {
+	find . -iname "*$1*"
+}
