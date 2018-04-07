@@ -19,3 +19,4 @@ else
     echo "Add '. "$TARGET"/index.sh' to the end of your bash profile."
 fi &&
 echo -e "\nRelaunch your terminal$RELOAD_PROMPT to apply changes."
+echo -e "\nAdd any custom paths and aliases to files ending in '.sh' in '$TARGET/local_settings"
