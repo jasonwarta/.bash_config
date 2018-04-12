@@ -45,3 +45,13 @@ confirm () {
 findin () {
 	find . -iname "*$1*"
 }
+
+# call with `serve portNum`
+# serves current directory on specified port
+# defaults to python3 but falls back to python2
+serve() ( 
+	python3 -m http.server "$1";
+	if [ $? -ne 0 ]; then
+		python -m SimpleHTTPServer "$1";
+	fi
+)
