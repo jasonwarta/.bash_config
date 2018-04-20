@@ -3,11 +3,54 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Bash Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .header { 
+            grid-area: header;
+            text-align: center;
+            font-size: 20px;
+        }
+        .main { 
+            grid-area: main; 
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-areas:
+                'header header header header header header'
+                '. main main main main .';
+            grid-gap: 10px;
+            padding: 10px;
+            padding-left:10%;
+            padding-right:10%;
+        }
+        .grid-container > div {
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    Download the <a href="https://jasonwarta.github.io/.bash_config/install.sh">install.sh</a> to examine it, or run 
-    <code>curl https://jasonwarta.github.io/.bash_config/install.sh | bash</code>
+    <a href="https://github.com/jasonwarta/.bash_config">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+            alt="Fork me on GitHub">
+    </a>
+    <div class="grid-container">
+        <div class="header">
+            Bash Profile Settings
+        </div>
+        <div class="main">
+            <p>
+                 Download the latest copy of the repo as a
+                <a href="https://github.com/jasonwarta/.bash_config/archive/master.zip">zip file</a>.
+            </p>
+            <p>
+                Install the script by downloading and running the
+                <a href="https://jasonwarta.github.io/.bash_config/install.sh">install script</a>, or run
+                <code>curl https://jasonwarta.github.io/.bash_config/install.sh | bash</code> to install directly from your terminal.
+            </p>
+        </div>
+    </div>
 </body>
 </html>
