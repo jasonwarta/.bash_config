@@ -1,4 +1,4 @@
-# .bash_profile
+# .bash_config
 
 ## Installation
 
