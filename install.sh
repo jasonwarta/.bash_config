@@ -15,10 +15,14 @@ rm -r $DOWNLOAD_LOCATION/bash_config $DOWNLOAD_LOCATION/bash_config.zip &&
 mkdir -p $TARGET/local_settings &&
 touch $TARGET/local_settings/{path.sh,aliases.sh,functions.sh} && 
 if [ -r $HOME/.bashrc ]; then
-    echo -e "\n. $TARGET/index.sh" >> $HOME/.bashrc
+    if ! grep "$TARGET/index.sh" $HOME/.bashrc > /dev/null; then
+        echo -e "\n. $TARGET/index.sh" >> $HOME/.bashrc
+    fi
     RELOAD_PROMPT=" or run 'source $HOME/.bashrc'"
 elif [ -r $HOME/.profile ]; then
-    echo ie "\n. $TARGET/index.sh" >> $HOME/.profile
+    if ! grep "$TARGET/index.sh" $HOME/.profile > /dev/null; then
+        echo ie "\n. $TARGET/index.sh" >> $HOME/.profile
+    fi
     RELOAD_PROMPT=" or run 'source $HOME/.profile'"
 else
     echo "Add '. "$TARGET"/index.sh' to the end of your bash profile."
