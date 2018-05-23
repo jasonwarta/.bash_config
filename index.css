@@ -1,0 +1,23 @@
+.head { 
+            grid-area: head;
+            text-align: center;
+            font-size: 20px;
+        }
+        .main { 
+            grid-area: main; 
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-areas:
+                'head head head head head head'
+                '. main main main main .';
+            grid-gap: 10px;
+            padding: 10px;
+            padding-left:10%;
+            padding-right:10%;
+        }
+        .grid-container > div {
+            padding: 20px 0;
+        }

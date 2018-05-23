@@ -5,31 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bash Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .head { 
-            grid-area: head;
-            text-align: center;
-            font-size: 20px;
-        }
-        .main { 
-            grid-area: main; 
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-areas:
-                'head head head head head head'
-                '. main main main main .';
-            grid-gap: 10px;
-            padding: 10px;
-            padding-left:10%;
-            padding-right:10%;
-        }
-        .grid-container > div {
-            padding: 20px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="prism.css">
 </head>
 <body>
     <a href="https://github.com/jasonwarta/.bash_config">
@@ -47,10 +24,14 @@
             </p>
             <p>
                 Alternatively, install the profile settings by downloading and running the
-                <a href="https://jasonwarta.github.io/.bash_config/install.sh">install script</a>, or run
-                <code>curl https://jasonwarta.github.io/.bash_config/install.sh | bash</code> to install directly from your terminal.
+                <a href="https://jasonwarta.github.io/.bash_config/install.sh">install script</a>, or run the following command to install directly from your terminal.
+<pre class="language-bash">
+<code class="language-bash">curl https://jasonwarta.github.io/.bash_config/install.sh | bash</code>
+</pre>
             </p>
         </div>
     </div>
+    <script src="prism.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
