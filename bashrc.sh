@@ -66,7 +66,7 @@ fi
 
 # set up git prompt stuff
 source $DIR/better-git-prompt.sh
-export PS1="\[\033[36m\]\w \[\033[31m\]\$(parse_git_branch)\[\033[32m\]$ "
+export PS1="\[\033[93m\]\u@\h\[\033[36m\]\w \[\033[31m\]\$(parse_git_branch)\[\033[32m\]$ "
 
 # # Other git prompt. worse imo
 # source $DIR/git-completion.sh
