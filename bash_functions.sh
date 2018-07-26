@@ -30,7 +30,7 @@ function gitlsd() {
 	done <<< $FILES
 }
 
-confirm () {
+function confirm () {
     read -r -p "${1:-Are you sure? [y/N]} " response </dev/tty
     case $response in
         [yY][eE][sS]|[yY]) 
@@ -40,4 +40,39 @@ confirm () {
             false
             ;;
     esac
+}
+
+function findin () {
+	find . -iname "*$1*"
+}
+
+# call with `serve portNum`
+# serves current directory on specified port
+# trys to run with python3 but falls back to python2
+function serve() ( 
+	python3 -m http.server "$1";
+	if [ $? -ne 0 ]; then
+		python -m SimpleHTTPServer "$1";
+	fi
+)
+
+# concats several media files together
+# resulting file will be called "output", with the same extension as the first file in the list
+# requires ffmpeg be installed
+function ffmpeg-concat() {
+	rand=$RANDOM$RANDOM
+	fname="list_$rand"
+
+	args=("$@")
+	numOfItems=${#args[@]}
+
+	for (( i=0;i<$numOfItems;i++ )); do
+		echo "* ${args[${i}]}"
+		echo "file '${args[${i}]}'" >> $fname
+	done
+
+	ext=$(sed 's/.*\(\.[A-Za-z0-9]*\)$/\1/'<<<${args[0]})
+	
+	ffmpeg -f concat -i $fname -c copy "ouput$ext"
+	rm "$fname"
 }

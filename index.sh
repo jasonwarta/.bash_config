@@ -5,6 +5,7 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 source $DIR/bashrc.sh
 source $DIR/bash_aliases.sh
 source $DIR/bash_functions.sh
+source $DIR/bash_path.sh
 
 # the following section relys on a folder of local scripts and settings contained
 # in a folder in a location specificied by the LOCAL_SETTINGS variable
