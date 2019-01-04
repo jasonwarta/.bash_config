@@ -76,3 +76,27 @@ function ffmpeg-concat() {
 	ffmpeg -f concat -i $fname -c copy "ouput$ext"
 	rm "$fname"
 }
+
+# migrates repo to given url
+# must be run from within a repo folder
+function migrate-repo() {
+	new_repo_url=$1
+	NAME=new_repo_`date +%s`
+
+	if [ -z $1 ]; then
+		echo "You must provide a target url for the repo"
+		exit
+	fi
+
+	for remote in `git branch -r|sed 's,origin/\|->\|HEAD,,g'`;
+	do
+		git checkout -b $remote
+	done
+
+	git remote add $NAME $new_repo_url
+	git push -u $NAME --all
+	git push -u $NAME --tags
+	git remote rm origin
+	git push $NAME master
+	git remote rename $NAME origin
+}
